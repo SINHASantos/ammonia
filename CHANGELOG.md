@@ -1,5 +1,9 @@
 # Unreleased
 
+# 4.1.2
+
+* fix: unexpected namespace switches after cleanup can cause mXSS
+
 # 4.1.1
 
 * chore: upgrade to [html5ever 0.35][]
@@ -13,6 +17,10 @@
 * feature: improve panic message when `clean_content_tags` conflicts with other options
 * feature: add support for sanitizing the `style` attribute
 
+# 4.0.1
+
+* fix: unexpected namespace switches after cleanup can cause mXSS (backport 4.1.2)
+
 # 4.0.0
 
 * Update html5ever to 0.27
@@ -20,6 +28,10 @@
 * chore: use the `Display` trait (and `ToString`) instead of an inherent `to_string` method (breaking change)
 * Security fixes are not backported to the 2.0 branch any more.
   Only the v3 and v4 branches are supported.
+
+# 3.3.1
+
+* fix: unexpected namespace switches after cleanup can cause mXSS (backport 4.1.2)
 
 # 3.3.0
 
