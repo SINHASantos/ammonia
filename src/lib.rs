@@ -2886,6 +2886,7 @@ impl Document {
     /// # Examples
     ///
     ///     use ammonia::Builder;
+    ///     use ammonia::rcdom::SerializableHandle;
     ///     use maplit::hashset;
     ///     use html5ever::serialize::{serialize, SerializeOpts};
     ///
@@ -2898,11 +2899,12 @@ impl Document {
     ///         .link_rel(None)
     ///         .clean(input);
     ///
-    ///     let mut node = document.to_dom_node();
+    ///     let node = document.to_dom_node();
     ///     node.children.borrow_mut().reverse();
     ///
     ///     let mut buf = Vec::new();
-    ///     serialize(&mut buf, &node, SerializeOpts::default())?;
+    ///     let handle: SerializableHandle = node.into();
+    ///     serialize(&mut buf, &handle, SerializeOpts::default())?;
     ///     let output = String::from_utf8(buf)?;
     ///
     ///     assert_eq!(output, expected);
