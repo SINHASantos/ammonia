@@ -2975,15 +2975,15 @@ impl From<Document> for String {
 mod test {
     use super::*;
     #[test]
-    fn deeply_nested_whitelisted() {
+    fn deeply_nested_whitelisted_does_not_cause_stack_overflow() {
         clean(&"<b>".repeat(60_000));
     }
     #[test]
-    fn deeply_nested_blacklisted() {
+    fn deeply_nested_blacklisted_does_not_cause_stack_overflow() {
         clean(&"<b-b>".repeat(60_000));
     }
     #[test]
-    fn deeply_nested_alternating() {
+    fn deeply_nested_alternating_does_not_cause_stack_overflow() {
         clean(&"<b-b>".repeat(35_000));
     }
     #[test]
