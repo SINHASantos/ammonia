@@ -498,6 +498,11 @@ impl<'a> Default for Builder<'a> {
 impl<'a> Builder<'a> {
     /// Sets the tags that are allowed.
     ///
+    /// Note that the document-level tags `<html>`, `<head>`, and `<body>` cannot
+    /// be allowed here. Ammonia parses its input as a fragment (as if it were
+    /// the contents of a `<div>`), so these tags are stripped by the parser
+    /// before they reach the sanitizer.
+    ///
     /// # Examples
     ///
     ///     use ammonia::Builder;
@@ -2987,6 +2992,21 @@ mod test {
     #[test]
     fn deeply_nested_alternating_does_not_cause_stack_overflow() {
         clean(&"<b-b>".repeat(35_000));
+    }
+    #[test]
+    fn document_level_tags_cannot_be_whitelisted() {
+        // Adding `html`, `head`, or `body` to the allowed tags has no effect
+        // because the parser runs in fragment mode and strips them before
+        // the sanitizer sees the tree. This test pins that documented
+        // behavior; if it ever changes, the docs on `Builder::tags` need to
+        // change too.
+        let fragment =
+            "<html><head>head content</head><body><div>test</div></body></html>";
+        let result = Builder::default()
+            .add_tags(["html", "head", "body"])
+            .clean(fragment)
+            .to_string();
+        assert_eq!(result, "head content<div>test</div>");
     }
     #[test]
     fn included_angles() {
