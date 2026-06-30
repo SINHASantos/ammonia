@@ -1,5 +1,9 @@
 # Unreleased
 
+# 4.1.3
+
+* fix: unexpected namespace switches after cleanup on MathML `annotation-xml` can cause mXSS
+
 * chore: upgrade to [html5ever 0.37.1][]
 
 * chore: always strip the contents of [`selectedcontent`][] elements,
