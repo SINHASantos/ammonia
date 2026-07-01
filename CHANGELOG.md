@@ -2,7 +2,7 @@
 
 # 4.1.3
 
-* fix: unexpected namespace switches after cleanup on MathML `annotation-xml` can cause mXSS
+* fix: unexpected namespace switches after cleanup on MathML `annotation-xml` can cause mXSS (reported by Ivan Ivančić (ivan0912, YesWeHack))
 
 * chore: upgrade to [html5ever 0.37.1][]
 
